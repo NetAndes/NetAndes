@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetAndes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 40px; background: #f4f4f9; color: #333; text-align: center; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { color: #004080; }
+        .plan { background: #e6f2ff; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="empresa">Cargando...</h1>
+        <p><strong>Dirección:</strong> <span id="dir">...</span></p>
+        <p><strong>Contacto / WhatsApp:</strong> <span id="tel">...</span></p>
+        
+        <div class="plan">
+            <h3 id="plan-nombre">...</h3>
+            <p style="font-size: 24px; font-weight: bold; color: #0073e6;" id="plan-precio">...</p>
+        </div>
+    </div>
+
+    <script>
+        // Carga los datos dinámicamente desde data.json para que se actualicen con Pages CMS
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('empresa').textContent = data.empresa_nombre;
+                document.getElementById('dir').textContent = data.direccion;
+                document.getElementById('tel').textContent = data.telefono;
+                document.getElementById('plan-nombre').textContent = data.plan_1_nombre;
+                document.getElementById('plan-precio').textContent = data.plan_1_precio;
+            });
+    </script>
+</body>
+</html>
