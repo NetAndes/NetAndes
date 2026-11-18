@@ -5,17 +5,17 @@ content:
     format: json
     fields:
       - name: empresa_nombre
-                label: Nombre de la Empresa
-                type: string
+        label: Nombre de la Empresa
+        type: string
       - name: telefono
-                label: Teléfono de Contacto / WhatsApp
-                type: string
+        label: Teléfono de Contacto
+        type: string
       - name: direccion
-                label: Dirección Física
-                type: string
+        label: Dirección Física
+        type: string
       - name: plan_1_nombre
-                label: Nombre del Plan Principal
-                type: string
+        label: Nombre del Plan
+        type: string
       - name: plan_1_precio
-                label: Precio del Plan ($)
-                type: string
+        label: Precio del Plan
+        type: string
