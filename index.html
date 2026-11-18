@@ -113,6 +113,22 @@
   .pie a:hover { color: var(--blanco); text-decoration: underline; }
   .legal { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.15); }
 
+
+  /* Mejoras visuales */
+  .hero { background: radial-gradient(900px 420px at 85% -10%, rgba(255,181,71,.22), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(18,64,94,.9), transparent 70%), var(--noche); }
+  .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 85%); mask-image: linear-gradient(to bottom, #000 30%, transparent 85%); }
+  .hero h1 { background: linear-gradient(90deg, #fff 55%, var(--senal)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .plan { transition: transform .25s, box-shadow .25s; }
+  .plan:hover { transform: translateY(-8px); box-shadow: 0 22px 40px -22px rgba(11,34,57,.5); }
+  .plan:not(.destacado) .velocidad { color: var(--lago); }
+  .servicio { background: var(--blanco); border: 1px solid #DCE6EA; border-top: 3px solid var(--senal); border-radius: 14px; padding: 1.5rem; transition: transform .25s, box-shadow .25s; }
+  .servicio:hover { transform: translateY(-5px); box-shadow: 0 16px 30px -20px rgba(11,34,57,.45); }
+  .servicio svg { background: var(--hielo); padding: 8px; width: 48px; height: 48px; border-radius: 12px; }
+  .seccion:not(.seccion-hielo) { background: linear-gradient(180deg, #fff, #F6FAFB); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .plan:hover, .servicio:hover { transform: none; } }
+
   .estado { padding: 6rem 1rem; text-align: center; color: var(--suave); }
 
   @media (max-width: 800px) {
@@ -169,6 +185,7 @@
     for (var i = 2; i < arguments.length; i++) {
       var hijo = arguments[i];
       if (hijo === null || hijo === undefined || hijo === false) continue;
+      if (Array.isArray(hijo)) { hijo.forEach(function (h) { if (h) nodo.append(h); }); continue; }
       nodo.append(hijo);
     }
     return nodo;
@@ -319,6 +336,12 @@
     renderNavegacion(d);
     app.append(renderHero(d), renderPlanes(d), renderServicios(d), renderContacto(d));
     renderPie(d);
+    var items = document.querySelectorAll(".encabezado, .plan, .servicio, .contacto-grid");
+    if (!("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    items.forEach(function (n) { n.classList.add("reveal"); io.observe(n); });
   }
 
   fetch("data.json", { cache: "no-cache" })
