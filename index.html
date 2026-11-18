@@ -1,39 +1,338 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetAndes</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 40px; background: #f4f4f9; color: #333; text-align: center; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h1 { color: #004080; }
-        .plan { background: #e6f2ff; padding: 15px; border-radius: 8px; margin: 20px 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NetAndes | Internet de fibra óptica</title>
+<meta name="description" content="NetAndes, proveedor de internet de fibra óptica en Ambato y Tungurahua.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noche: #0B2239;
+    --lago: #12405E;
+    --hielo: #E8F1F4;
+    --senal: #FFB547;
+    --tinta: #14212B;
+    --suave: #51606B;
+    --blanco: #FFFFFF;
+    --titulos: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --cuerpo: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; font-family: var(--cuerpo); color: var(--tinta); background: var(--blanco); line-height: 1.6; }
+  h1, h2, h3 { font-family: var(--titulos); line-height: 1.15; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--senal); outline-offset: 3px; }
+  .contenedor { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+
+  /* Navegación */
+  .barra { position: sticky; top: 0; z-index: 20; background: var(--noche); color: var(--blanco); }
+  .barra .contenedor { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .marca { font-family: var(--titulos); font-weight: 700; font-size: 1.4rem; text-decoration: none; letter-spacing: -0.01em; }
+  .marca span { color: var(--senal); }
+  .menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+  .menu a { text-decoration: none; font-weight: 500; font-size: 0.95rem; opacity: 0.85; }
+  .menu a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--senal); }
+  .burger { display: none; background: none; border: 1px solid rgba(255,255,255,.35); color: inherit; border-radius: 8px; padding: .4rem .7rem; font: inherit; cursor: pointer; }
+
+  /* Hero */
+  .hero { background: var(--noche); color: var(--blanco); position: relative; overflow: hidden; padding: 5rem 0 0; }
+  .hero-texto { max-width: 640px; padding-bottom: 3rem; position: relative; z-index: 1; }
+  .hero h1 { font-size: clamp(2.3rem, 5.5vw, 3.9rem); font-weight: 700; letter-spacing: -0.02em; }
+  .hero-sub { margin-top: 1.25rem; font-size: 1.15rem; color: #C5D5DF; max-width: 52ch; }
+  .acciones { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+  .btn { display: inline-block; padding: .85rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; border: 2px solid transparent; transition: background .2s, color .2s, border-color .2s; cursor: pointer; font-family: var(--cuerpo); font-size: 1rem; }
+  .btn-primario { background: var(--senal); color: var(--noche); }
+  .btn-primario:hover { background: #FFC56E; }
+  .btn-borde { border-color: rgba(255,255,255,.4); color: var(--blanco); }
+  .btn-borde:hover { border-color: var(--blanco); }
+  .indicadores { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; margin: 2.5rem 0 0; padding: 0; list-style: none; }
+  .indicadores li { border-left: 3px solid var(--senal); padding-left: .9rem; }
+  .indicadores strong { display: block; font-family: var(--titulos); font-size: 1.5rem; }
+  .indicadores span { font-size: .9rem; color: #C5D5DF; }
+  .cordillera { display: block; width: 100%; height: 170px; margin-top: -40px; }
+  .cordillera .linea { stroke: var(--senal); stroke-width: 3; fill: none; stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: trazo 2.4s ease-out .3s forwards; }
+  .cordillera .nodo { fill: var(--noche); stroke: var(--senal); stroke-width: 3; }
+  @keyframes trazo { to { stroke-dashoffset: 0; } }
+
+  /* Secciones */
+  .seccion { padding: 4.5rem 0; }
+  .seccion-hielo { background: var(--hielo); padding-top: 2rem; }
+  .encabezado { max-width: 620px; margin-bottom: 2.5rem; }
+  .encabezado h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); letter-spacing: -0.015em; }
+  .encabezado p { margin-top: .75rem; color: var(--suave); font-size: 1.05rem; }
+
+  /* Planes */
+  .planes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; align-items: stretch; }
+  .plan { background: var(--blanco); border: 1px solid #CFDDE3; border-radius: 16px; padding: 2rem 1.75rem; display: flex; flex-direction: column; position: relative; }
+  .plan.destacado { background: var(--noche); color: var(--blanco); border-color: var(--noche); box-shadow: 0 18px 40px -18px rgba(11,34,57,.55); }
+  .plan .etiqueta { position: absolute; top: -13px; left: 1.75rem; background: var(--senal); color: var(--noche); font-size: .8rem; font-weight: 600; padding: .2rem .8rem; border-radius: 999px; }
+  .plan h3 { font-size: 1.15rem; font-weight: 500; }
+  .velocidad { margin-top: .75rem; font-family: var(--titulos); font-weight: 700; font-size: 3.4rem; line-height: 1; letter-spacing: -0.03em; }
+  .velocidad small { font-size: 1.1rem; font-weight: 500; margin-left: .3rem; letter-spacing: 0; opacity: .75; }
+  .precio { margin-top: 1rem; font-size: 1.15rem; }
+  .precio strong { font-family: var(--titulos); font-size: 1.9rem; }
+  .plan ul { list-style: none; padding: 0; margin: 1.5rem 0 2rem; display: grid; gap: .65rem; flex: 1; }
+  .plan li { padding-left: 1.6rem; position: relative; font-size: .97rem; }
+  .plan li::before { content: ""; position: absolute; left: 0; top: .45em; width: .8rem; height: .45rem; border-left: 2.5px solid var(--lago); border-bottom: 2.5px solid var(--lago); transform: rotate(-45deg); }
+  .plan.destacado li::before { border-color: var(--senal); }
+  .plan .btn { text-align: center; background: var(--noche); color: var(--blanco); }
+  .plan .btn:hover { background: var(--lago); }
+  .plan.destacado .btn { background: var(--senal); color: var(--noche); }
+  .plan.destacado .btn:hover { background: #FFC56E; }
+  .nota { margin-top: 1.5rem; font-size: .9rem; color: var(--suave); }
+
+  /* Servicios */
+  .servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem 2.5rem; }
+  .servicio { border-top: 3px solid var(--lago); padding-top: 1.25rem; }
+  .servicio svg { width: 34px; height: 34px; stroke: var(--lago); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .servicio h3 { font-size: 1.2rem; margin: .9rem 0 .5rem; }
+  .servicio p { color: var(--suave); font-size: .98rem; }
+
+  /* Contacto */
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 2.5rem; align-items: start; }
+  .datos { display: grid; gap: 1.4rem; margin: 0; }
+  .datos div { display: grid; gap: .15rem; }
+  .datos dt { font-weight: 600; font-size: .9rem; color: var(--suave); }
+  .datos dd { margin: 0; font-size: 1.05rem; }
+  .datos a { text-decoration-color: var(--senal); text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .datos .btn { margin-top: .5rem; width: fit-content; background: var(--noche); color: var(--blanco); text-decoration: none; }
+  .mapa { border-radius: 16px; overflow: hidden; border: 1px solid #CFDDE3; background: var(--hielo); min-height: 340px; }
+  .mapa iframe { width: 100%; height: 100%; min-height: 340px; border: 0; display: block; }
+
+  /* Footer */
+  footer { background: var(--noche); color: #C5D5DF; padding: 2.5rem 0; font-size: .92rem; }
+  .pie { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: flex-start; }
+  .pie .marca { color: var(--blanco); display: inline-block; margin-bottom: .35rem; }
+  .pie nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+  .pie a { text-decoration: none; }
+  .pie a:hover { color: var(--blanco); text-decoration: underline; }
+  .legal { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.15); }
+
+  .estado { padding: 6rem 1rem; text-align: center; color: var(--suave); }
+
+  @media (max-width: 800px) {
+    .burger { display: block; }
+    .menu { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--noche); flex-direction: column; gap: 0; padding: .5rem 1.25rem 1rem; }
+    .menu.abierto { display: flex; }
+    .menu a { display: block; padding: .8rem 0; }
+    .contacto-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 3.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cordillera .linea { animation: none; stroke-dashoffset: 0; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="empresa">Cargando...</h1>
-        <p><strong>Dirección:</strong> <span id="dir">...</span></p>
-        <p><strong>Contacto / WhatsApp:</strong> <span id="tel">...</span></p>
-        
-        <div class="plan">
-            <h3 id="plan-nombre">...</h3>
-            <p style="font-size: 24px; font-weight: bold; color: #0073e6;" id="plan-precio">...</p>
-        </div>
-    </div>
 
-    <script>
-        // Carga los datos dinámicamente desde data.json para que se actualicen con Pages CMS
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('empresa').textContent = data.empresa_nombre;
-                document.getElementById('dir').textContent = data.direccion;
-                document.getElementById('tel').textContent = data.telefono;
-                document.getElementById('plan-nombre').textContent = data.plan_1_nombre;
-                document.getElementById('plan-precio').textContent = data.plan_1_precio;
-            });
-    </script>
+<header class="barra">
+  <div class="contenedor">
+    <a class="marca" href="#inicio" id="marca"></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menú</button>
+    <ul class="menu" id="menu"></ul>
+  </div>
+</header>
+
+<main id="app">
+  <p class="estado" id="estado">Cargando información…</p>
+</main>
+
+<footer>
+  <div class="contenedor" id="pie"></div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // Íconos de los servicios (el nombre se elige con el campo "icono" del JSON)
+  var ICONOS = {
+    fibra: '<path d="M3 12h4l2-6 4 12 2-6h6"/>',
+    seguridad: '<path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    wifi: '<path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.8 16a5 5 0 0 1 6.4 0"/><circle cx="12" cy="19.5" r="1"/>',
+    soporte: '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.2-1.5 2-4 2h-2"/>'
+  };
+
+  // Crea un elemento. Los textos se insertan como texto plano (seguro frente a HTML en el JSON).
+  function el(tag, attrs) {
+    var nodo = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (attrs[k] === null || attrs[k] === undefined || attrs[k] === "") return;
+      if (k === "class") nodo.className = attrs[k]; else nodo.setAttribute(k, attrs[k]);
+    });
+    for (var i = 2; i < arguments.length; i++) {
+      var hijo = arguments[i];
+      if (hijo === null || hijo === undefined || hijo === false) continue;
+      nodo.append(hijo);
+    }
+    return nodo;
+  }
+
+  function svgIcono(nombre) {
+    var cont = el("div");
+    cont.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + (ICONOS[nombre] || ICONOS.wifi) + "</svg>";
+    return cont.firstChild;
+  }
+
+  function enlaceWhatsApp(wa, mensaje) {
+    return "https://wa.me/" + wa.numero + "?text=" + encodeURIComponent(mensaje || wa.mensaje || "");
+  }
+
+  function renderNavegacion(d) {
+    var marca = document.getElementById("marca");
+    var nombre = d.empresa.nombre;
+    marca.textContent = "";
+    marca.append(nombre.slice(0, -5) || nombre, el("span", {}, nombre.length > 5 ? nombre.slice(-5) : ""));
+    var menu = document.getElementById("menu");
+    d.navegacion.forEach(function (n) {
+      menu.append(el("li", {}, el("a", { href: n.enlace }, n.texto)));
+    });
+    var burger = document.getElementById("burger");
+    burger.addEventListener("click", function () {
+      var abierto = menu.classList.toggle("abierto");
+      burger.setAttribute("aria-expanded", String(abierto));
+    });
+    menu.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") { menu.classList.remove("abierto"); burger.setAttribute("aria-expanded", "false"); }
+    });
+  }
+
+  function renderHero(d) {
+    var h = d.hero;
+    var secundario = h.boton_secundario.enlace === "whatsapp"
+      ? enlaceWhatsApp(d.contacto.whatsapp) : h.boton_secundario.enlace;
+    var ns = "http://www.w3.org/2000/svg";
+    var cordillera = document.createElementNS(ns, "svg");
+    cordillera.setAttribute("class", "cordillera");
+    cordillera.setAttribute("viewBox", "0 0 1200 170");
+    cordillera.setAttribute("preserveAspectRatio", "xMidYMax slice");
+    cordillera.setAttribute("aria-hidden", "true");
+    cordillera.innerHTML =
+      '<path d="M0 150 L110 100 L210 128 L350 46 L460 108 L600 24 L740 118 L860 68 L980 112 L1100 58 L1200 98 L1200 170 L0 170Z" fill="#E8F1F4"/>' +
+      '<path class="linea" d="M0 150 L110 100 L210 128 L350 46 L460 108 L600 24 L740 118 L860 68 L980 112 L1100 58 L1200 98"/>' +
+      '<circle class="nodo" cx="350" cy="46" r="7"/><circle class="nodo" cx="600" cy="24" r="7"/>' +
+      '<circle class="nodo" cx="860" cy="68" r="7"/><circle class="nodo" cx="1100" cy="58" r="7"/>';
+
+    return el("section", { class: "hero", id: "inicio" },
+      el("div", { class: "contenedor" },
+        el("div", { class: "hero-texto" },
+          el("h1", {}, h.titulo),
+          el("p", { class: "hero-sub" }, h.subtitulo),
+          el("div", { class: "acciones" },
+            el("a", { class: "btn btn-primario", href: h.boton_principal.enlace }, h.boton_principal.texto),
+            el("a", { class: "btn btn-borde", href: secundario, target: "_blank", rel: "noopener" }, h.boton_secundario.texto)
+          ),
+          el("ul", { class: "indicadores" },
+            h.indicadores.map(function (i) {
+              return el("li", {}, el("strong", {}, i.valor), el("span", {}, i.etiqueta));
+            })
+          )
+        )
+      ),
+      cordillera
+    );
+  }
+
+  function renderPlanes(d) {
+    var p = d.planes;
+    return el("section", { class: "seccion seccion-hielo", id: "planes" },
+      el("div", { class: "contenedor" },
+        el("div", { class: "encabezado" }, el("h2", {}, p.titulo), el("p", {}, p.descripcion)),
+        el("div", { class: "planes" },
+          p.items.map(function (plan) {
+            var msg = "Hola NetAndes, me interesa el plan " + plan.nombre + " de " + plan.velocidad + " " + plan.unidad + ".";
+            return el("article", { class: "plan" + (plan.destacado ? " destacado" : "") },
+              plan.etiqueta ? el("span", { class: "etiqueta" }, plan.etiqueta) : null,
+              el("h3", {}, "Plan " + plan.nombre),
+              el("div", { class: "velocidad" }, plan.velocidad, el("small", {}, plan.unidad)),
+              el("p", { class: "precio" }, el("strong", {}, "$" + plan.precio), " " + plan.periodo),
+              el("ul", {}, plan.caracteristicas.map(function (c) { return el("li", {}, c); })),
+              el("a", { class: "btn", href: enlaceWhatsApp(d.contacto.whatsapp, msg), target: "_blank", rel: "noopener" }, plan.boton)
+            );
+          })
+        ),
+        el("p", { class: "nota" }, p.nota)
+      )
+    );
+  }
+
+  function renderServicios(d) {
+    var s = d.servicios;
+    return el("section", { class: "seccion", id: "servicios" },
+      el("div", { class: "contenedor" },
+        el("div", { class: "encabezado" }, el("h2", {}, s.titulo), el("p", {}, s.descripcion)),
+        el("div", { class: "servicios" },
+          s.items.map(function (it) {
+            return el("article", { class: "servicio" },
+              svgIcono(it.icono), el("h3", {}, it.titulo), el("p", {}, it.descripcion));
+          })
+        )
+      )
+    );
+  }
+
+  function renderContacto(d) {
+    var c = d.contacto;
+    return el("section", { class: "seccion seccion-hielo", id: "contacto" },
+      el("div", { class: "contenedor" },
+        el("div", { class: "encabezado" }, el("h2", {}, c.titulo), el("p", {}, c.descripcion)),
+        el("div", { class: "contacto-grid" },
+          el("dl", { class: "datos" },
+            el("div", {}, el("dt", {}, "Teléfono"), el("dd", {}, el("a", { href: "tel:" + c.telefono.enlace }, c.telefono.texto))),
+            el("div", {}, el("dt", {}, "WhatsApp"), el("dd", {}, el("a", { href: enlaceWhatsApp(c.whatsapp), target: "_blank", rel: "noopener" }, c.whatsapp.texto))),
+            el("div", {}, el("dt", {}, "Correo"), el("dd", {}, el("a", { href: "mailto:" + c.correo }, c.correo))),
+            el("div", {}, el("dt", {}, "Dirección"), el("dd", {}, c.direccion)),
+            el("div", {}, el("dt", {}, "Horario de atención"), el("dd", {}, c.horario)),
+            el("a", { class: "btn", href: enlaceWhatsApp(c.whatsapp), target: "_blank", rel: "noopener" }, "Escribir por WhatsApp")
+          ),
+          el("div", { class: "mapa" },
+            el("iframe", { src: c.mapa_url, title: "Mapa de ubicación de " + d.empresa.nombre, loading: "lazy", referrerpolicy: "no-referrer" })
+          )
+        )
+      )
+    );
+  }
+
+  function renderPie(d) {
+    var f = d.footer;
+    var pie = document.getElementById("pie");
+    pie.append(
+      el("div", { class: "pie" },
+        el("div", {}, el("span", { class: "marca" }, d.empresa.nombre), el("p", {}, d.empresa.descripcion)),
+        el("nav", { "aria-label": "Enlaces legales" }, f.enlaces.map(function (l) { return el("a", { href: l.enlace }, l.texto); })),
+        el("nav", { "aria-label": "Redes sociales" }, f.redes.map(function (r) { return el("a", { href: r.enlace, target: "_blank", rel: "noopener" }, r.texto); }))
+      ),
+      el("p", { class: "legal" }, f.texto_legal)
+    );
+  }
+
+  function iniciar(d) {
+    document.title = d.empresa.nombre + " | " + d.empresa.eslogan;
+    var app = document.getElementById("app");
+    app.textContent = "";
+    renderNavegacion(d);
+    app.append(renderHero(d), renderPlanes(d), renderServicios(d), renderContacto(d));
+    renderPie(d);
+  }
+
+  fetch("data.json", { cache: "no-cache" })
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(iniciar)
+    .catch(function (err) {
+      var estado = document.getElementById("estado");
+      estado.textContent = "No se pudo cargar la información del sitio. Si abriste el archivo con doble clic, usa un servidor local (por ejemplo Live Server) o GitHub Pages.";
+      console.error("Error al cargar data.json:", err);
+    });
+})();
+</script>
 </body>
 </html>
