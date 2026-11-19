@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NetAndes | Internet de fibra óptica</title>
+<title>NetAndes | Internet que te lleva a otro nivel</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <meta name="description" content="NetAndes, proveedor de internet de fibra óptica en Ambato y Tungurahua.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --noche: #0B2239;
-    --lago: #12405E;
-    --hielo: #E8F1F4;
-    --senal: #FFB547;
+    --noche: #00163F;
+    --lago: #002161;
+    --hielo: #E6F4FD;
+    --senal: #28B2FB;
     --tinta: #14212B;
     --suave: #51606B;
     --blanco: #FFFFFF;
@@ -30,14 +31,14 @@
   .contenedor { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
 
   /* Navegación */
-  .barra { position: sticky; top: 0; z-index: 20; background: var(--noche); color: var(--blanco); }
-  .barra .contenedor { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .barra { position: sticky; top: 0; z-index: 20; background: var(--blanco); color: var(--noche); border-bottom: 1px solid #DCE6EA; }
+  .barra .contenedor { display: flex; align-items: center; justify-content: space-between; height: 72px; }
   .marca { font-family: var(--titulos); font-weight: 700; font-size: 1.4rem; text-decoration: none; letter-spacing: -0.01em; }
   .marca span { color: var(--senal); }
   .menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
   .menu a { text-decoration: none; font-weight: 500; font-size: 0.95rem; opacity: 0.85; }
   .menu a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--senal); }
-  .burger { display: none; background: none; border: 1px solid rgba(255,255,255,.35); color: inherit; border-radius: 8px; padding: .4rem .7rem; font: inherit; cursor: pointer; }
+  .burger { display: none; background: none; border: 1px solid rgba(0,33,97,.35); color: inherit; border-radius: 8px; padding: .4rem .7rem; font: inherit; cursor: pointer; }
 
   /* Hero */
   .hero { background: var(--noche); color: var(--blanco); position: relative; overflow: hidden; padding: 5rem 0 0; }
@@ -47,7 +48,7 @@
   .acciones { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
   .btn { display: inline-block; padding: .85rem 1.5rem; border-radius: 10px; font-weight: 600; text-decoration: none; border: 2px solid transparent; transition: background .2s, color .2s, border-color .2s; cursor: pointer; font-family: var(--cuerpo); font-size: 1rem; }
   .btn-primario { background: var(--senal); color: var(--noche); }
-  .btn-primario:hover { background: #FFC56E; }
+  .btn-primario:hover { background: #5CC5FD; }
   .btn-borde { border-color: rgba(255,255,255,.4); color: var(--blanco); }
   .btn-borde:hover { border-color: var(--blanco); }
   .indicadores { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; margin: 2.5rem 0 0; padding: 0; list-style: none; }
@@ -83,7 +84,7 @@
   .plan .btn { text-align: center; background: var(--noche); color: var(--blanco); }
   .plan .btn:hover { background: var(--lago); }
   .plan.destacado .btn { background: var(--senal); color: var(--noche); }
-  .plan.destacado .btn:hover { background: #FFC56E; }
+  .plan.destacado .btn:hover { background: #5CC5FD; }
   .nota { margin-top: 1.5rem; font-size: .9rem; color: var(--suave); }
 
   /* Servicios */
@@ -114,8 +115,10 @@
   .legal { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.15); }
 
 
+  .marca img { display: block; height: 52px; width: auto; }
+  @media (max-width: 640px) { .marca img { height: 42px; } }
   /* Mejoras visuales */
-  .hero { background: radial-gradient(900px 420px at 85% -10%, rgba(255,181,71,.22), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(18,64,94,.9), transparent 70%), var(--noche); }
+  .hero { background: radial-gradient(900px 420px at 85% -10%, rgba(40,178,251,.28), transparent 60%), radial-gradient(700px 400px at 0% 100%, rgba(0,33,97,.9), transparent 70%), var(--noche); }
   .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 85%); mask-image: linear-gradient(to bottom, #000 30%, transparent 85%); }
   .hero h1 { background: linear-gradient(90deg, #fff 55%, var(--senal)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .plan { transition: transform .25s, box-shadow .25s; }
@@ -205,7 +208,11 @@
     var marca = document.getElementById("marca");
     var nombre = d.empresa.nombre;
     marca.textContent = "";
-    marca.append(nombre.slice(0, -5) || nombre, el("span", {}, nombre.length > 5 ? nombre.slice(-5) : ""));
+    if (d.empresa.logo) {
+      marca.append(el("img", { src: d.empresa.logo.replace(/^\//, ""), alt: nombre + " - " + d.empresa.eslogan }));
+    } else {
+      marca.append(nombre.slice(0, -3) || nombre, el("span", {}, nombre.length > 3 ? nombre.slice(-3) : ""));
+    }
     var menu = document.getElementById("menu");
     d.navegacion.forEach(function (n) {
       menu.append(el("li", {}, el("a", { href: n.enlace }, n.texto)));
@@ -303,9 +310,9 @@
           el("dl", { class: "datos" },
             el("div", {}, el("dt", {}, "Teléfono"), el("dd", {}, el("a", { href: "tel:" + c.telefono.enlace }, c.telefono.texto))),
             el("div", {}, el("dt", {}, "WhatsApp"), el("dd", {}, el("a", { href: enlaceWhatsApp(c.whatsapp), target: "_blank", rel: "noopener" }, c.whatsapp.texto))),
-            el("div", {}, el("dt", {}, "Correo"), el("dd", {}, el("a", { href: "mailto:" + c.correo }, c.correo))),
+            c.correo ? el("div", {}, el("dt", {}, "Correo"), el("dd", {}, el("a", { href: "mailto:" + c.correo }, c.correo))) : null,
             el("div", {}, el("dt", {}, "Dirección"), el("dd", {}, c.direccion)),
-            el("div", {}, el("dt", {}, "Horario de atención"), el("dd", {}, c.horario)),
+            c.horario ? el("div", {}, el("dt", {}, "Horario de atención"), el("dd", {}, c.horario)) : null,
             el("a", { class: "btn", href: enlaceWhatsApp(c.whatsapp), target: "_blank", rel: "noopener" }, "Escribir por WhatsApp")
           ),
           el("div", { class: "mapa" },
