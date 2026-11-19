@@ -13,6 +13,7 @@ content:
           - { name: nombre, label: Nombre de la empresa, type: string }
           - { name: eslogan, label: Eslogan, type: string }
           - { name: descripcion, label: Descripción corta, type: text }
+          - { name: logo, label: Logo (imagen), type: image }
       - name: hero
         label: Portada (parte superior)
         type: object
