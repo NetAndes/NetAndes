@@ -1,77 +1,128 @@
 {
   "empresa": {
     "nombre": "NetAndes",
-    "eslogan": "Internet de fibra óptica para el centro del país",
-    "descripcion": "Proveedor de internet con cobertura en Ambato y la provincia de Tungurahua."
+    "eslogan": "Internet que te lleva a otro nivel",
+    "descripcion": "Servicio de internet confiable y de alta velocidad para hogares y empresas en Tisaleo, con planes flexibles y atención al cliente 24/7.",
+    "logo": "assets/logo.png"
   },
   "navegacion": [
-    { "texto": "Planes", "enlace": "#planes" },
-    { "texto": "Servicios", "enlace": "#servicios" },
-    { "texto": "Contacto", "enlace": "#contacto" }
+    {
+      "texto": "Planes",
+      "enlace": "#planes"
+    },
+    {
+      "texto": "Servicios",
+      "enlace": "#servicios"
+    },
+    {
+      "texto": "Contacto",
+      "enlace": "#contacto"
+    }
   ],
   "hero": {
-    "titulo": "Conexión estable, de la ciudad a la montaña",
-    "subtitulo": "Fibra óptica simétrica, instalación en 48 horas y soporte técnico local para tu hogar o tu negocio.",
-    "boton_principal": { "texto": "Ver planes", "enlace": "#planes" },
-    "boton_secundario": { "texto": "Hablar por WhatsApp", "enlace": "whatsapp" },
+    "titulo": "Internet que te lleva a otro nivel",
+    "subtitulo": "Fibra óptica de alta velocidad para tu hogar o tu negocio en Tisaleo, con instalación gratis y atención al cliente 24/7.",
+    "boton_principal": {
+      "texto": "Ver planes",
+      "enlace": "#planes"
+    },
+    "boton_secundario": {
+      "texto": "Hablar por WhatsApp",
+      "enlace": "whatsapp"
+    },
     "indicadores": [
-      { "valor": "99.9%", "etiqueta": "disponibilidad de la red" },
-      { "valor": "48 h", "etiqueta": "para instalar tu servicio" },
-      { "valor": "24/7", "etiqueta": "monitoreo y soporte" }
+      {
+        "valor": "$15",
+        "etiqueta": "planes desde, IVA incluido"
+      },
+      {
+        "valor": "Gratis",
+        "etiqueta": "instalación en todos los planes"
+      },
+      {
+        "valor": "24/7",
+        "etiqueta": "atención al cliente"
+      }
     ]
   },
   "planes": {
     "titulo": "Planes de internet",
-    "descripcion": "Elige la velocidad que necesitas. Sin plazos forzosos ocultos y con instalación incluida.",
-    "nota": "Precios referenciales en dólares (USD) por mes. Cobertura sujeta a factibilidad técnica.",
+    "descripcion": "Elige la velocidad que necesitas, con instalación gratis.",
+    "nota": "Precios en dólares (USD) por mes, IVA incluido. Aplican condiciones y restricciones en los planes con cámara de seguridad.",
     "items": [
       {
-        "nombre": "Hogar",
+        "nombre": "Especial",
+        "velocidad": "70",
+        "unidad": "Mbps",
+        "precio": "15",
+        "periodo": "/mes",
+        "destacado": false,
+        "etiqueta": "",
+        "caracteristicas": [
+          "Fibra óptica",
+          "Instalación gratis",
+          "Precio con IVA incluido"
+        ],
+        "boton": "Contratar plan"
+      },
+      {
+        "nombre": "Zafiro",
         "velocidad": "100",
         "unidad": "Mbps",
-        "precio": "17.90",
+        "precio": "20",
         "periodo": "/mes",
         "destacado": false,
         "etiqueta": "",
         "caracteristicas": [
-          "Ideal para 3 a 5 dispositivos",
-          "Streaming en HD y clases virtuales",
-          "Router WiFi incluido",
-          "Instalación gratis"
+          "Fibra óptica",
+          "Instalación gratis",
+          "Precio con IVA incluido"
         ],
         "boton": "Contratar plan"
       },
       {
-        "nombre": "Familia",
-        "velocidad": "300",
+        "nombre": "Rubí",
+        "velocidad": "130",
         "unidad": "Mbps",
-        "precio": "24.90",
+        "precio": "22",
+        "periodo": "/mes",
+        "destacado": false,
+        "etiqueta": "",
+        "caracteristicas": [
+          "Fibra óptica",
+          "Instalación gratis",
+          "Precio con IVA incluido"
+        ],
+        "boton": "Contratar plan"
+      },
+      {
+        "nombre": "Esmeralda",
+        "velocidad": "170",
+        "unidad": "Mbps",
+        "precio": "25",
         "periodo": "/mes",
         "destacado": true,
-        "etiqueta": "Más elegido",
+        "etiqueta": "Con cámara de seguridad",
         "caracteristicas": [
-          "Ideal para 6 a 10 dispositivos",
-          "Streaming 4K y videojuegos en línea",
-          "Router WiFi 6 incluido",
+          "Fibra óptica",
           "Instalación gratis",
-          "Soporte técnico prioritario"
+          "Precio con IVA incluido",
+          "Promoción con cámara de seguridad (aplican condiciones)"
         ],
         "boton": "Contratar plan"
       },
       {
-        "nombre": "Pro",
-        "velocidad": "600",
+        "nombre": "Élite",
+        "velocidad": "210",
         "unidad": "Mbps",
-        "precio": "34.90",
+        "precio": "30",
         "periodo": "/mes",
         "destacado": false,
         "etiqueta": "",
         "caracteristicas": [
-          "Ideal para teletrabajo y emprendimientos",
-          "Subida simétrica para nube y videollamadas",
-          "Router WiFi 6 y repetidor incluidos",
-          "IP pública bajo solicitud",
-          "Soporte técnico prioritario"
+          "Fibra óptica",
+          "Instalación gratis",
+          "Precio con IVA incluido"
         ],
         "boton": "Contratar plan"
       }
@@ -79,54 +130,55 @@
   },
   "servicios": {
     "titulo": "Servicios adicionales",
-    "descripcion": "Complementa tu conexión con soluciones pensadas para casas, locales y oficinas.",
+    "descripcion": "Complementa tu conexión con soluciones para tu hogar o negocio.",
     "items": [
       {
-        "titulo": "Fibra dedicada",
-        "descripcion": "Enlace exclusivo con ancho de banda garantizado y acuerdo de nivel de servicio para empresas.",
+        "titulo": "Fibra óptica",
+        "descripcion": "Conexión estable y de alta velocidad para hogares y empresas.",
         "icono": "fibra"
       },
       {
-        "titulo": "Cámaras de seguridad IP",
-        "descripcion": "Instalación de cámaras con grabación y visualización remota desde el celular.",
+        "titulo": "Cámaras de seguridad WiFi",
+        "descripcion": "Cámaras desde $48, y modelo con luz y alarma a $66. Monitorea desde tu celular las 24 horas.",
         "icono": "seguridad"
       },
       {
-        "titulo": "WiFi en toda la casa",
-        "descripcion": "Diseño e instalación de puntos de acceso para eliminar zonas sin señal.",
-        "icono": "wifi"
+        "titulo": "Instalación sin costo",
+        "descripcion": "Instalamos tu servicio de internet sin costo adicional.",
+        "icono": "soporte"
       },
       {
-        "titulo": "Soporte técnico a domicilio",
-        "descripcion": "Revisión de cableado, configuración de equipos y solución de fallas en sitio.",
-        "icono": "soporte"
+        "titulo": "Promoción internet + cámara",
+        "descripcion": "Contrata tu plan junto con una cámara de seguridad. Aplican condiciones y restricciones.",
+        "icono": "wifi"
       }
     ]
   },
   "contacto": {
     "titulo": "Contacto y ubicación",
-    "descripcion": "Escríbenos o visítanos. Te ayudamos a revisar la cobertura en tu sector.",
-    "telefono": { "texto": "(03) 242 0000", "enlace": "+59332420000" },
+    "descripcion": "Escríbenos o visítanos en Tisaleo. Te ayudamos a revisar la cobertura en tu sector.",
+    "telefono": {
+      "texto": "098 177 7033",
+      "enlace": "+593981777033"
+    },
     "whatsapp": {
-      "texto": "+593 99 000 0000",
-      "numero": "593990000000",
+      "texto": "+593 98 177 7033",
+      "numero": "593981777033",
       "mensaje": "Hola NetAndes, quisiera información sobre sus planes de internet."
     },
-    "correo": "ventas@netandes.example.ec",
-    "direccion": "Av. Cevallos y Montalvo, Ambato, Tungurahua, Ecuador",
-    "horario": "Lunes a viernes de 08:00 a 18:00, sábados de 09:00 a 13:00",
-    "mapa_url": "https://www.openstreetmap.org/export/embed.html?bbox=-78.6297%2C-1.2467%2C-78.6097%2C-1.2367&layer=mapnik&marker=-1.2417%2C-78.6197"
+    "correo": "",
+    "direccion": "Av. Montalvo y Sucre, frente al nuevo Centro de Salud, Tisaleo, Ecuador",
+    "horario": "Consulta nuestro horario por WhatsApp o teléfono",
+    "mapa_url": "https://www.openstreetmap.org/export/embed.html?bbox=-78.6740%2C-1.3525%2C-78.6640%2C-1.3425&layer=mapnik&marker=-1.3474907%2C-78.6689859"
   },
   "footer": {
-    "texto_legal": "© 2026 NetAndes. Proyecto académico, todos los datos son ficticios.",
-    "enlaces": [
-      { "texto": "Términos del servicio", "enlace": "#" },
-      { "texto": "Política de privacidad", "enlace": "#" }
-    ],
+    "texto_legal": "© 2026 NetAndes S.A. Todos los derechos reservados.",
+    "enlaces": [],
     "redes": [
-      { "texto": "Facebook", "enlace": "https://facebook.com" },
-      { "texto": "Instagram", "enlace": "https://instagram.com" },
-      { "texto": "TikTok", "enlace": "https://tiktok.com" }
+      {
+        "texto": "Facebook",
+        "enlace": "https://www.facebook.com/share/1DZuM2pkiU/"
+      }
     ]
   }
 }
